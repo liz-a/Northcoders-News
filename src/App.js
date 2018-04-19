@@ -25,11 +25,9 @@ class App extends Component {
     const {articles, users, topics, comments} = this.state;
     return (
       <div className="App">
-      <Navbar />
+      <Navbar topics={topics} users={users}/>
       <Route exact path="/" render={(props) => <Home />}/>
       <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments}/>}/>
-      <Route exact path="/topics" render={(props) => <Topics topics={topics}/>}/>
-      
       <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
       <Route exact path="/users" render={(props) => <Users users={users}/>}/>
       </div>

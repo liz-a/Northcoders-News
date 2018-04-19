@@ -37,7 +37,6 @@ class Comment extends Component {
     upVoteComment = (commentId) => {
         axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=up`)
         .then((res)=> {
-            console.log(res)
             this.setState({
                 commentVotes: res.data.comment[0].votes
             })
@@ -46,7 +45,6 @@ class Comment extends Component {
     downVoteComment = (commentId) => {
         axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=down`)
         .then((res)=> {
-            console.log(res)
             this.setState({
                 commentVotes: res.data.comment[0].votes
             })

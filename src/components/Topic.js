@@ -4,13 +4,12 @@ import Article from './Article';
 class Topic extends Component {
     render() {
         const {articles, topics, users, comments, currentTopic} = this.props;
-        console.log(users)
         return (
             <div>
                 <div className="container-fluid">
                 {topics.topics && articles.articles && users.users && this.getArticlesByTopic(currentTopic, articles, topics, users,comments)}
                 </div>
-                </div>
+            </div>
         )
     }
     getArticlesByTopic = (currentTopic, articles, topics, users, comments) => {

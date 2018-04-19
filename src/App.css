@@ -12,6 +12,14 @@
   position: relative !important;
   margin: 0 auto !important;
 }
+/* NAVBAR STYLING */
+.centre {
+  text-align: center !important;
+  display: inline;
+  position: relative;
+  margin: 0 auto;
+}
+
 /* COMMENTS STYING */
 .comment-box {
   width: 99%;
