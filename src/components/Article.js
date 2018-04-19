@@ -47,8 +47,8 @@ class Article extends Component {
                         </div>
                     </div>
                     <div className="col-md-1">
-                        <div className="card article-comments-add-delete">
-                            <p><i className="fas fa-comment"></i> <i className="fas fa-comment-slash"></i> </p></div>
+                        <div className="card article-comments-add">
+                            <p><i className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
                     <div hidden={this.state.hideComments}>{comments.comments && this.getCommentsByArticle(article._id, comments, users)}</div>

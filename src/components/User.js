@@ -17,8 +17,8 @@ class User extends Component {
 
             <div className="row align-centre"> 
             <div className="col-sm-12">
-            <div className="row align-centre">Articles by user: !!!</div>
-            <div className="row align-centre">Comments by user: !!!</div>
+            <div className="row align-centre"><button>{`Articles by ${user.username}`}</button></div>
+            <div className="row align-centre"><button>{`Comments by ${user.username}`}</button></div>
             </div>
             </div>
             </div>

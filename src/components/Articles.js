@@ -9,7 +9,6 @@ class Articles extends Component {
         // articles.articles && console.log(articles.articles)
         return (
             <div className="outer">
-                <p>Articles!</p>
                 <div className="container-fluid">
                 {/* <div className="row align-centre">
                 <div className="col-md-4">

@@ -19,8 +19,11 @@ class Comment extends Component {
                             <p><i onClick={(e)=> {this.upVoteComment(id)}} className="far fa-arrow-alt-circle-up"></i> <i onClick={(e)=> {this.downVoteComment(id)}} className="far fa-arrow-alt-circle-down"></i> </p></div>
                     </div>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-11">
                         <div className="card comment-body" >{body}</div>
+                    </div>
+                    <div className="col-md-1">
+                    <div className="comment-delete"> <i className="fas fa-comment-slash"></i></div> 
                     </div>
                     </div>
                 </div>

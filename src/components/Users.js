@@ -7,7 +7,6 @@ class Users extends Component {
         users.users && console.log(users.users)
         return (
             <div>
-                <p>Users!</p>
                 <div className="container-fluid">
                 
                 {/* {users.users && users.users.map(user => {
