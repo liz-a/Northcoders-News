@@ -23,7 +23,7 @@ class Navbar extends Component {
                 <a onClick={this.handleMenuClickTopics} className="nav-link">Topics</a>
               </li>
               <li className="nav-item">
-                <a onClick={this.handleMenuClickUsers} className="nav-link">Users</a>
+                <Link to="/users" onClick={this.handleMenuClickUsers} className="nav-link">Users</Link>
               </li>
               <li className="nav-item" hidden={this.state.hideOptionsWrap}>
                 <a className="nav-link">{"<"}</a>
@@ -36,8 +36,9 @@ class Navbar extends Component {
           </div>
         </nav>
         <nav hidden={this.state.hideUsersMenu} className="navbar navbar-expand-sm navbar-light bg-light">
+        <Link to="/users" className="navbar-brand text-dark">{"< All Users />"}</Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0 centre">
+            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">
                 <a className="nav-link">{"<"}</a>
               </li>
@@ -79,9 +80,10 @@ class Navbar extends Component {
   getExtraMenuItemsUsers = (users) => {
     return users.users.map(user => {
       const name = user.name;
+      const username = user.username
       return (
       <li key={user._id} className="nav-item">
-        <Link to={`/users/${name.toLowerCase()}`} className="nav-link">{name}</Link>
+        <Link to={`/users/${username.toLowerCase()}`} className="nav-link">{username}</Link>
       </li>
       )
     })

@@ -6,6 +6,7 @@ import Articles from "./components/Articles";
 import Topics from "./components/Topics";
 import Topic from "./components/Topic";
 import Users from "./components/Users";
+import User from "./components/User";
 import Home from "./components/Home";
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
   }
   render() {
     const {articles, users, topics, comments} = this.state;
+    console.log(users.users)
     return (
       <div className="App">
       <Navbar topics={topics} users={users}/>
@@ -30,6 +32,7 @@ class App extends Component {
       <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments}/>}/>
       <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
       <Route exact path="/users" render={(props) => <Users users={users}/>}/>
+      <Route exact path="/users/:username" render={(props) => <User username={props.match.params.username} users={users}/>}/>
       </div>
     );
   }
