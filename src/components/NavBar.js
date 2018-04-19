@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom"
 
 class Navbar extends Component {
+  state = {
+    topicsMenuHidden: true
+    
+  }
     render() {
       return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -28,10 +32,19 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link to="/users" className="nav-link">Users</Link>
               </li>
+              <li className="nav-item">
+                <a className="nav-link">{"<"}</a>
+                </li>
+              <li className="nav-item">
+                <a className="nav-link">{"/>"}</a>
+                </li>
             </ul>
           </div>
         </nav>
       );
+    }
+    getExtraMenuItems = (params) => {
+
     }
   }
 

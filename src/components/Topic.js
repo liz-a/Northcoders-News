@@ -3,17 +3,17 @@ import Article from './Article';
 
 class Topic extends Component {
     render() {
-        const {articles, topics, currentTopic} = this.props;
-
+        const {articles, topics, users, comments, currentTopic} = this.props;
+        console.log(users)
         return (
             <div>
                 <div className="container-fluid">
-                {topics.topics && articles.articles && this.getArticlesByTopic(currentTopic, articles, topics)}
+                {topics.topics && articles.articles && users.users && this.getArticlesByTopic(currentTopic, articles, topics, users,comments)}
                 </div>
                 </div>
         )
     }
-    getArticlesByTopic = (currentTopic, articles, topics) => {
+    getArticlesByTopic = (currentTopic, articles, topics, users, comments) => {
         let topicId = topics.topics.map(topic => {
             if(topic.title.toLowerCase() === currentTopic) return topic._id;
         }).filter(id => id !== undefined)[0];
@@ -24,7 +24,11 @@ class Topic extends Component {
                         return (
                             <div className="between-articles" key={article._id}>
                             <div className="card articles-box-width">
-                        <Article article={article}/>
+                        <Article    article={article}                                    
+                                    comments={comments}
+                                    topics={topics}
+                                    users={users}
+                                    />
                         </div>
                         </div>
                         )

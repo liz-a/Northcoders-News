@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Article from './Article';
+import PT from "prop-types";
 
 class Articles extends Component {
     render() {
         const props = this.props;
-        const { articles } = this.props;
-        articles.articles && console.log(articles.articles)
+        const { articles, comments, users, topics } = this.props;
+        // articles.articles && console.log(articles.articles)
         return (
             <div>
                 <p>Articles!</p>
@@ -20,7 +21,12 @@ class Articles extends Component {
                         return (
                             <div className="between-articles" key={article._id}>
                                 <div className="card articles-box-width">
-                                    <Article article={article} {...props} />
+                                    <Article 
+                                    article={article}  
+                                    comments={comments}
+                                    topics={topics}
+                                    users={users}
+                                    {...props} />
                                 </div>
                                 </div>
                                 )
@@ -30,7 +36,10 @@ class Articles extends Component {
                 </div>
             </div>
                 )
-            }
-        }
+    }
+    // static propTypes = {
+    //     article: PT.array.isRequired
+    // }
+}
         
 export default Articles;

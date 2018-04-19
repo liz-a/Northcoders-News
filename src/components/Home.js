@@ -6,6 +6,19 @@ class Home extends Component {
             <div>
                 <p>Homepage!</p>
                 <div className="row">
+                {['Most upvoted','Most talked about'].map(trending => {
+                    return (
+                        <div key={trending} className="col-sm-6">
+                        <div className="card">
+                        <div className="card-header p-1 pl-2">{trending}</div>
+                        </div>
+                        </div>
+                    )
+                })}
+                </div>
+                </div>
+
+                /* <div className="row">
                 <div className="col-sm-4">
                 <div className="card">
                 <div className="card-header p-1 pl-2">Most recent</div>
@@ -22,7 +35,7 @@ class Home extends Component {
                 </div>
                 </div>
                 </div>
-                </div>
+                </div> */
         )
     }
 }

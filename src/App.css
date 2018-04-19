@@ -12,6 +12,39 @@
   position: relative !important;
   margin: 0 auto !important;
 }
+/* COMMENTS STYING */
+.comment-box {
+  width: 99%;
+  margin: 0 auto;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2%;
+  border-color: green !important;
+  padding: 1px 0px 1px 10px;
+}
+.between-comments {
+  margin-bottom: 4px !important;
+}
+.comment-user-name {
+  width: 100%;
+  text-align: left;
+  border: none !important;
+}
+.comment-votes {
+  width: 100%;
+  text-align: right;
+  border: none !important;
+}
+.comment-votes-change {
+  width: 100%;
+  text-align: center;
+  border: none !important;
+}
+.comment-body {
+  width: 100%;
+  text-align: left;
+  border: none !important;
+}
 
 /* USERS STYLING */
 .users {
@@ -29,6 +62,7 @@
   border-color: black !important;
 }
 .article-name {
+  padding-left: 3%;
   width: 100%;
   text-align: left;
   border: none !important;
@@ -54,6 +88,7 @@
   border: none !important;
 }
 .article-comments {
+  padding-left: 1%;
   width: 100%;
   text-align: left;
   border: none !important;
@@ -62,6 +97,10 @@
   width: 100%;
   text-align: center;
   border: none !important;
+}
+.article-body {
+  padding-left: 1%;
+  padding-right: 1%;
 }
 .between-articles {
   margin-bottom: 10px !important;

@@ -13,21 +13,24 @@ class App extends Component {
     this.getArticles()
     this.getTopics()
     this.getUsers()
+    this.getComments()
   }
   state = {
     articles: [],
     topics: [],
-    users: []
+    users: [],
+    comments: []
   }
   render() {
-    const {articles, users, topics} = this.state;
+    const {articles, users, topics, comments} = this.state;
     return (
       <div className="App">
       <Navbar />
       <Route exact path="/" render={(props) => <Home />}/>
-      <Route exact path="/articles" render={(props) => <Articles articles={articles}/>}/>
+      <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments}/>}/>
       <Route exact path="/topics" render={(props) => <Topics topics={topics}/>}/>
-      <Route exact path="/topics/:topic_name" render={(props) => <Topic articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
+      
+      <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
       <Route exact path="/users" render={(props) => <Users users={users}/>}/>
       </div>
     );
@@ -56,6 +59,15 @@ class App extends Component {
     .then(res => {
       this.setState({
         users: res
+      })
+    })
+  }
+  getComments = () => {
+    fetch("https://northcoder-news.herokuapp.com/api/comments")
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        comments: res
       })
     })
   }
