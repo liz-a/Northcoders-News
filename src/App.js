@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import './App.css';
 import Navbar from "./components/NavBar";
 import Articles from "./components/Articles";
 import Topics from "./components/Topics";
+import Topic from "./components/Topic";
 import Users from "./components/Users";
 import Home from "./components/Home";
 
@@ -26,6 +27,7 @@ class App extends Component {
       <Route exact path="/" render={(props) => <Home />}/>
       <Route exact path="/articles" render={(props) => <Articles articles={articles}/>}/>
       <Route exact path="/topics" render={(props) => <Topics topics={topics}/>}/>
+      <Route exact path="/topics/:topic_name" render={(props) => <Topic articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
       <Route exact path="/users" render={(props) => <Users users={users}/>}/>
       </div>
     );

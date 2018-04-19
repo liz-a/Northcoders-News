@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 class Topics extends Component {
     render(){
         const {topics} = this.props;
-        topics.topics && console.log(topics.topics)
+        // topics.topics && console.log(topics.topics)
         return (
             <div>
                 <p>Topics!</p>

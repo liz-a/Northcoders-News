@@ -10,12 +10,12 @@ class Articles extends Component {
             <div>
                 <p>Articles!</p>
                 <div className="container-fluid">
-                <div className="row align-centre">
+                {/* <div className="row align-centre">
                 <div className="col-md-4">
                 <div className="card ">Most votes
                 </div>
                 </div>
-                </div>
+                </div> */}
                     {articles.articles && articles.articles.map(article => {
                         return (
                             <div className="between-articles" key={article._id}>
