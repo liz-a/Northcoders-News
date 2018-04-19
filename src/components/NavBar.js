@@ -3,8 +3,9 @@ import {Link} from "react-router-dom"
 
 class Navbar extends Component {
   state = {
-    topicsMenuHidden: true
-    
+    topicsMenuHidden: true,
+    optionsHidden: true
+
   }
     render() {
       return (
@@ -27,23 +28,27 @@ class Navbar extends Component {
                 <Link to="/articles" className="nav-link">Articles</Link>
               </li>
               <li className="nav-item">
-                <Link to="/topics" className="nav-link">Topics</Link>
+                <Link to="/topics" value="topics" onClick={this.handleMenuClick} className="nav-link">Topics</Link>
               </li>
               <li className="nav-item">
                 <Link to="/users" className="nav-link">Users</Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" hidden={this.state.optionsHidden}>
                 <a className="nav-link">{"<"}</a>
                 </li>
               <li className="nav-item">
-                <a className="nav-link">{"/>"}</a>
+                <a className="nav-link" hidden={this.state.optionsHidden}>{"/>"}</a>
                 </li>
             </ul>
           </div>
         </nav>
       );
     }
-    getExtraMenuItems = (params) => {
+    handleMenuClick = (e) => {
+      let event = e.target
+      console.log(event)
+    }
+    getExtraMenuItems = (option) => {
 
     }
   }

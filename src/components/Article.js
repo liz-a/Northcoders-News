@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import PT from "prop-types";
 import Comment from './Comment';
 // import {Route} from 'react-router-dom';
+import axios from 'axios';
 
 class Article extends Component {
     state = {
+        votes: this.props.article.votes,
         hideComments: true
     }
+    
     render() {
         const { article, comments, topics, users } = this.props;
         return (
@@ -23,11 +26,11 @@ class Article extends Component {
                     </div>
                     <div className="col-md-2">
                         <div className="card article-votes">
-                            <p>Votes: {article.votes}</p></div>
+                            <p>Votes: {this.state.votes}</p></div>
                     </div>
                     <div className="col-md-1">
                         <div className="card article-votes-change">
-                            <p><i className="far fa-arrow-alt-circle-up"></i> <i className="far fa-arrow-alt-circle-down"></i> </p></div>
+                            <p><i onClick={(e)=> {this.upVoteArticle(article._id, article)}} className="far fa-arrow-alt-circle-up"></i> <i onClick={(e)=> {this.downVoteArticle(article._id, article)}} className="far fa-arrow-alt-circle-down"></i> </p></div>
                     </div>
                 </div>
                 <div className="row">
@@ -72,7 +75,7 @@ class Article extends Component {
     getCommentsByArticle = (articleId, comments, users) => {
         return (
             <div>{comments.comments && comments.comments.map(comment => {
-                if(comment.belongs_to === articleId) return <div className="between-comments"><Comment users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} /></div>
+                if(comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} /></div>
             })}</div>
         )
     }
@@ -84,8 +87,25 @@ class Article extends Component {
         })
     }
     static propTypes = {
-        article: PT.array.isRequired
+        article: PT.object.isRequired
     }
+    upVoteArticle = (articleId, article) => {
+        axios.put(`https://northcoder-news.herokuapp.com/api/articles/${articleId}?vote=up`)
+        .then((res)=> {
+            this.setState({
+                votes: res.data.article.votes
+            })
+        })
+    }
+    downVoteArticle = (articleId, article) => {
+        axios.put(`https://northcoder-news.herokuapp.com/api/articles/${articleId}?vote=down`)
+        .then((res)=> {
+            this.setState({
+                votes: res.data.article.votes
+            })
+        })
+    }
+    
 }
 
 export default Article;

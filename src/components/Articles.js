@@ -8,7 +8,7 @@ class Articles extends Component {
         const { articles, comments, users, topics } = this.props;
         // articles.articles && console.log(articles.articles)
         return (
-            <div>
+            <div className="outer">
                 <p>Articles!</p>
                 <div className="container-fluid">
                 {/* <div className="row align-centre">
