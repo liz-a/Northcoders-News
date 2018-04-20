@@ -11,7 +11,7 @@ class Article extends Component {
     }
     
     render() {
-        const { article, comments, topics, users } = this.props;
+        const { article, comments, topics, users, deleteComment } = this.props;
         return (
             <div>
                 <div className="row">
@@ -51,7 +51,7 @@ class Article extends Component {
                             <p><i className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
-                    <div hidden={this.state.hideComments}>{comments.comments && this.getCommentsByArticle(article._id, comments, users)}</div>
+                    <div hidden={this.state.hideComments}>{comments.comments && this.getCommentsByArticle(article._id, comments, users, deleteComment)}</div>
             </div>
 
         )
@@ -72,10 +72,10 @@ class Article extends Component {
             <div className="card article-created-by">{topic}</div>
         )
     }
-    getCommentsByArticle = (articleId, comments, users) => {
+    getCommentsByArticle = (articleId, comments, users, deleteComment) => {
         return (
             <div>{comments.comments && comments.comments.map(comment => {
-                if(comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} /></div>
+                if(comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment}/></div>
             })}</div>
         )
     }

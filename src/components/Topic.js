@@ -3,16 +3,16 @@ import Article from './Article';
 
 class Topic extends Component {
     render() {
-        const {articles, topics, users, comments, currentTopic} = this.props;
+        const {articles, topics, users, comments, currentTopic, deleteComment} = this.props;
         return (
             <div>
                 <div className="container-fluid">
-                {topics.topics && articles.articles && users.users && this.getArticlesByTopic(currentTopic, articles, topics, users,comments)}
+                {topics.topics && articles.articles && users.users && this.getArticlesByTopic(currentTopic, articles, topics, users,comments, deleteComment)}
                 </div>
             </div>
         )
     }
-    getArticlesByTopic = (currentTopic, articles, topics, users, comments) => {
+    getArticlesByTopic = (currentTopic, articles, topics, users, comments, deleteComment) => {
         let topicId = topics.topics.map(topic => {
             if(topic.title.toLowerCase() === currentTopic) return topic._id;
         }).filter(id => id !== undefined)[0];
@@ -27,6 +27,7 @@ class Topic extends Component {
                                     comments={comments}
                                     topics={topics}
                                     users={users}
+                                    deleteComment={deleteComment}
                                     />
                         </div>
                         </div>

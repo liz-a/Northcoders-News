@@ -7,7 +7,7 @@ class Comment extends Component {
         hideComments: true
     }
     render () {
-        const {id, createdBy, body, votes, users} = this.props;
+        const {id, createdBy, body, votes, users, deleteComment} = this.props;
         return (
             <div className="card comment-box">
                 <div className="row">
@@ -23,7 +23,7 @@ class Comment extends Component {
                         <div className="card comment-body" >{body}</div>
                     </div>
                     <div className="col-md-1">
-                    <div className="comment-delete"> <i className="fas fa-comment-slash"></i></div> 
+                    <div className="comment-delete"> <i onClick={(e)=> {deleteComment(id)}} className="fas fa-comment-slash"></i></div> 
                     </div>
                     </div>
                 </div>
@@ -53,6 +53,8 @@ class Comment extends Component {
             })
         })
     }
+    
+
 }
 
 export default Comment;
