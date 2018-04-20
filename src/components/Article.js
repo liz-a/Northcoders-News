@@ -10,9 +10,8 @@ class Article extends Component {
         articleComments: this.props.comments.comments,
         hideComments: true
     }
-    
+
     render() {
-        {this.state.articleComments && console.log(this.state.articleComments)}
         const { article, comments, topics, users, deleteComment } = this.props;
         return (
             <div>
@@ -32,7 +31,7 @@ class Article extends Component {
                     </div>
                     <div className="col-md-1">
                         <div className="card article-votes-change">
-                            <p><i onClick={(e)=> {this.upVoteArticle(article._id, article)}} className="far fa-arrow-alt-circle-up"></i> <i onClick={(e)=> {this.downVoteArticle(article._id, article)}} className="far fa-arrow-alt-circle-down"></i> </p></div>
+                            <p><i onClick={(e) => { this.upVoteArticle(article._id, article) }} className="far fa-arrow-alt-circle-up"></i> <i onClick={(e) => { this.downVoteArticle(article._id, article) }} className="far fa-arrow-alt-circle-down"></i> </p></div>
                     </div>
                 </div>
                 <div className="row">
@@ -53,7 +52,7 @@ class Article extends Component {
                             <p><i className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
-                    <div hidden={this.state.hideComments}>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, deleteComment)}</div>
+                <div hidden={this.state.hideComments}>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>
             </div>
 
         )
@@ -78,8 +77,7 @@ class Article extends Component {
         // console.log(articleComments)
         return (
             <div>{articleComments && articleComments.map(comment => {
-                console.log(comment)
-                if(comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment}/></div>
+                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} /></div>
             })}</div>
         )
     }
@@ -95,21 +93,30 @@ class Article extends Component {
     }
     upVoteArticle = (articleId, article) => {
         axios.put(`https://northcoder-news.herokuapp.com/api/articles/${articleId}?vote=up`)
-        .then((res)=> {
-            this.setState({
-                votes: res.data.article.votes
+            .then((res) => {
+                this.setState({
+                    votes: res.data.article.votes
+                })
             })
-        })
     }
     downVoteArticle = (articleId, article) => {
         axios.put(`https://northcoder-news.herokuapp.com/api/articles/${articleId}?vote=down`)
-        .then((res)=> {
-            this.setState({
-                votes: res.data.article.votes
+            .then((res) => {
+                this.setState({
+                    votes: res.data.article.votes
+                })
             })
-        })
     }
-    
+    deleteComment = (commentId) => {
+        axios.delete(`https://northcoder-news.herokuapp.com/api/comments/${commentId}`)
+            // .then(res => res.json())
+            .then((res) => {
+                console.log(res)
+                this.setState({
+                    articleComments: res.data.comments
+                })
+            })
+    }
 }
 
 export default Article;

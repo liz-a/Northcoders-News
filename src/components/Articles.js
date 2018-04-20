@@ -5,7 +5,7 @@ import PT from "prop-types";
 class Articles extends Component {
     render() {
         const props = this.props;
-        const { articles, comments, users, topics, deleteComment } = this.props;
+        const { articles, comments, users, topics} = this.props;
         // articles.articles && console.log(articles.articles)
         return (
             <div className="outer">
@@ -25,14 +25,12 @@ class Articles extends Component {
                                     comments={comments}
                                     topics={topics}
                                     users={users}
-                                    deleteComment={deleteComment}
                                     {...props} />
                                 </div>
                                 </div>
                                 )
                                 
                             })}
-            
                 </div>
             </div>
                 )
