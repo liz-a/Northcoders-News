@@ -16,7 +16,7 @@ class User extends Component {
                 <div className="card user-card" >
                     <h5 className="card-title">{user.name}</h5>
                     <p className="card-text">{user.username}</p>
-                    <img className="card-img-top card-image-size" src={user.avatar_url} alt="Card image cap" />
+                    <img className="card-img-top card-image-size" src={user.avatar_url} alt="Card cap" />
                     <div className="card-body">
                         <a onClick={(e)=>{this.handleArticleClick()}} className="btn btn-primary user-btn-clr">{`Articles by ${user.username}`}</a>
                     </div>
@@ -37,7 +37,6 @@ class User extends Component {
         })
     }
     getArticlesByUser = (currentUser, articles, comments, topics, users) => {
-        console.log(currentUser._id)
         return (
             <div>
                 {articles.map(article => {

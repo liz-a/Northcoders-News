@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
       <Navbar topics={topics} users={users}/>
-      <Route exact path="/" render={(props) => <Home />}/>
+      <Route exact path="/" render={(props) => <Home users={users} topics={topics} articles={articles} comments={comments}/>}/>
       <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments} />}/>
       <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
       <Route exact path="/users" render={(props) => <Users topics={topics} users={users} articles={articles} comments={comments}/>}/>
