@@ -4,11 +4,10 @@ import User from './User';
 class Users extends Component {
     render(){
         const {users, articles, comments, topics} = this.props;
-        // users && console.log(users)
         return (
             <div>
                 <div className="container-fluid">
-                {users && this.getAllUsers(users, comments, articles)}
+                {users && this.getAllUsers(users, comments, articles, topics)}
                 </div>
                 </div>
         )
