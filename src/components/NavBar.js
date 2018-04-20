@@ -79,7 +79,6 @@ class Navbar extends Component {
   }
   getExtraMenuItemsUsers = (users) => {
     return users.users.map(user => {
-      const name = user.name;
       const username = user.username
       return (
       <li key={user._id} className="nav-item">

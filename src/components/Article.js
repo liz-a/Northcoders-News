@@ -21,7 +21,7 @@ class Article extends Component {
       }
 
     render() {
-        const { article, comments, topics, users, deleteComment } = this.props;
+        const { article, topics, users } = this.props;
         // console.log(this.state.articleComments);
         return (
             <div>
@@ -119,7 +119,7 @@ class Article extends Component {
         console.log(articleComments);
         return (
             <div>{articleComments && articleComments.map(comment => {
-                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} /></div>
+                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} comment={comment}/></div>
             })}</div>
         )
     }
@@ -178,8 +178,6 @@ class Article extends Component {
     // }
     addComment = (e, articleId, comment) => {
         e.preventDefault();
-        console.log(this.state.newCommentBody)
-        console.log(e.target)
         axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`, {
             comment: comment
         })
@@ -191,7 +189,8 @@ class Article extends Component {
                 draftState.unshift(res.data.commentData)
             })
             this.setState({
-                articleComments: nextState
+                articleComments: nextState,
+                newCommentBody: ""
             })
         })
         .then(() => {console.log(this.state.articleComments)})

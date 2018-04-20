@@ -24,13 +24,13 @@ class Comment extends Component {
       }
 
     render () {
-        const {id, createdBy, body, votes, users} = this.state;
+        const {id, createdBy, body, users} = this.state;
         const {deleteComment} = this.props;
         return (
             <div className="card comment-box">
                 <div className="row">
                     <div className="col-md-9">
-                        <div className="card comment-user-name" >{this.findUserName(createdBy, users)}</div>
+                        <div className="card comment-user-name" >{this.findUserName(createdBy, this.state.users)}</div>
                     </div>
                     <div className="col-md-2 comment-votes">Votes: {this.state.commentVotes}</div>
                     <div className="col-md-1 comment-votes-change">

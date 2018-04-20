@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Route} from "react-router-dom";
 import './App.css';
 import Navbar from "./components/NavBar";
 import Articles from "./components/Articles";
-import Topics from "./components/Topics";
 import Topic from "./components/Topic";
 import Users from "./components/Users";
 import User from "./components/User";
 import Home from "./components/Home";
-import axios from "axios";
 
 class App extends Component {
   componentDidMount() {
