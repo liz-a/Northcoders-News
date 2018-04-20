@@ -6,7 +6,6 @@ class Articles extends Component {
     render() {
         const props = this.props;
         const { articles, comments, users, topics} = this.props;
-        // articles.articles && console.log(articles.articles)
         return (
             <div className="outer">
                 <div className="container-fluid">
@@ -16,7 +15,7 @@ class Articles extends Component {
                 </div>
                 </div>
                 </div> */}
-                    {articles.articles && articles.articles.map(article => {
+                    {articles && articles.map(article => {
                         return (
                             <div className="between-articles" key={article._id}>
                                 <div className="card articles-box-width">

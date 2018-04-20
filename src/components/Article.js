@@ -8,7 +8,7 @@ import axios from 'axios';
 class Article extends Component {
     state = {
         votes: this.props.article.votes,
-        articleComments: this.props.comments.comments,
+        articleComments: this.props.comments,
         hideComments: true,
         hideAddComment: true,
         newCommentBody: ""
@@ -16,7 +16,7 @@ class Article extends Component {
 
       componentWillReceiveProps(newProps) {
         this.setState({
-            articleComments: newProps.comments.comments
+            articleComments: newProps.comments
         })
       }
 
@@ -100,7 +100,7 @@ class Article extends Component {
         )
     }
     findCreatedBy = (userId, article, users) => {
-        const user = users.users.filter(user => {
+        const user = users.filter(user => {
             return user._id === userId
         })[0].name
         return (
@@ -108,7 +108,7 @@ class Article extends Component {
         )
     }
     findBelongsTo = (topicId, article, topics) => {
-        const topic = topics.topics.filter(topic => {
+        const topic = topics.filter(topic => {
             return topic._id === topicId
         })[0].title
         return (
@@ -159,23 +159,16 @@ class Article extends Component {
     deleteComment = (commentId) => {
         axios.delete(`https://northcoder-news.herokuapp.com/api/comments/${commentId}`)
             .then((res) => {
-                console.log(res)
                 this.setState({
                     articleComments: res.data.comments
                 })
             })
     }
     getCommentBody = (e) => {
-        console.log(e)
         this.setState({
             newCommentBody: e
         })
     }
-    // handleAddCommentClick = (e, articleId) => {
-    //     e.preventDefault();
-    //     // console.log(this.state.newCommentBody)
-    //     // console.log(e.target)
-    // }
     addComment = (e, articleId, comment) => {
         e.preventDefault();
         axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`, {

@@ -39,7 +39,7 @@ class App extends Component {
     .then(res => res.json())
     .then(res => {
       this.setState({
-        articles: res
+        articles: res.articles
       })
     })
   }
@@ -48,7 +48,7 @@ class App extends Component {
     .then(res => res.json())
     .then(res => {
       this.setState({
-        topics: res
+        topics: res.topics
       })
     })
   }
@@ -57,7 +57,7 @@ class App extends Component {
     .then(res => res.json())
     .then(res => {
       this.setState({
-        users: res
+        users: res.users
       })
     })
   }
@@ -66,7 +66,7 @@ class App extends Component {
     .then(res => res.json())
     .then(res => {
       this.setState({
-        comments: res
+        comments: res.comments
       })
     })
   }

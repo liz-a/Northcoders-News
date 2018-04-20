@@ -48,7 +48,7 @@ class Comment extends Component {
         )
     }
     findUserName = (userId, users) => {
-        const user = users.users.filter(user => {
+        const user = users.filter(user => {
             return user._id === userId
         })[0]
         return (

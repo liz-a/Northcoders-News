@@ -28,7 +28,7 @@ class Navbar extends Component {
               <li className="nav-item" hidden={this.state.hideOptionsWrap}>
                 <a className="nav-link">{"<"}</a>
               </li>
-                {topics.topics && this.getExtraMenuItemsTopics(topics)}
+                {topics && this.getExtraMenuItemsTopics(topics)}
               <li className="nav-item">
                 <a className="nav-link" hidden={this.state.hideOptionsWrap}>{"/>"}</a>
               </li>
@@ -42,7 +42,7 @@ class Navbar extends Component {
             <li className="nav-item">
                 <a className="nav-link">{"<"}</a>
               </li>
-              {users.users && this.getExtraMenuItemsUsers(users)}
+              {users && this.getExtraMenuItemsUsers(users)}
             <li className="nav-item">
                 <a className="nav-link">{"/>"}</a>
               </li>
@@ -68,7 +68,7 @@ class Navbar extends Component {
     })
   }
   getExtraMenuItemsTopics = (topics) => {
-    return topics.topics.map(topic => {
+    return topics.map(topic => {
       const title = topic.title;
       return (
       <li key={topic._id} className="nav-item">
@@ -78,7 +78,7 @@ class Navbar extends Component {
     })
   }
   getExtraMenuItemsUsers = (users) => {
-    return users.users.map(user => {
+    return users.map(user => {
       const username = user.username
       return (
       <li key={user._id} className="nav-item">
