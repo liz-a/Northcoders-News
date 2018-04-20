@@ -3,11 +3,11 @@ import Article from './Article';
 
 class Topic extends Component {
     render() {
-        const {articles, topics, users, comments, currentTopic, deleteComment} = this.props;
+        const {articles, topics, users, comments, currentTopic} = this.props;
         return (
             <div>
                 <div className="container-fluid">
-                {topics.topics && articles.articles && users.users && this.getArticlesByTopic(currentTopic, articles, topics, users,comments, deleteComment)}
+                {topics.topics && articles.articles && users.users && this.getArticlesByTopic(currentTopic, articles, topics, users,comments)}
                 </div>
             </div>
         )
@@ -27,7 +27,6 @@ class Topic extends Component {
                                     comments={comments}
                                     topics={topics}
                                     users={users}
-                                    deleteComment={deleteComment}
                                     />
                         </div>
                         </div>

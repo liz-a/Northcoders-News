@@ -30,8 +30,8 @@ class App extends Component {
       <div className="App">
       <Navbar topics={topics} users={users}/>
       <Route exact path="/" render={(props) => <Home />}/>
-      <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments} deleteComment={this.deleteComment}/>}/>
-      <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name} deleteComment={this.deleteComment}/>}/>
+      <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments} />}/>
+      <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
       <Route exact path="/users" render={(props) => <Users users={users}/>}/>
       <Route exact path="/users/:username" render={(props) => <User username={props.match.params.username} users={users} />}/>
       </div>
@@ -73,16 +73,7 @@ class App extends Component {
       })
     })
   }
-  deleteComment = (commentId) => {
-    axios.delete(`https://northcoder-news.herokuapp.com/api/comments/${commentId}`)
-    // .then(res => res.json())
-    .then((res)=> {
-      console.log(res)
-        this.setState({
-          comments: res.data.comments
-        })
-    })
-}
+
 }
 
 export default App;

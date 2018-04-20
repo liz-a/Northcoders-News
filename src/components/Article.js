@@ -7,10 +7,12 @@ import axios from 'axios';
 class Article extends Component {
     state = {
         votes: this.props.article.votes,
+        articleComments: this.props.comments.comments,
         hideComments: true
     }
     
     render() {
+        {this.state.articleComments && console.log(this.state.articleComments)}
         const { article, comments, topics, users, deleteComment } = this.props;
         return (
             <div>
@@ -51,7 +53,7 @@ class Article extends Component {
                             <p><i className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
-                    <div hidden={this.state.hideComments}>{comments.comments && this.getCommentsByArticle(article._id, comments, users, deleteComment)}</div>
+                    <div hidden={this.state.hideComments}>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, deleteComment)}</div>
             </div>
 
         )
@@ -72,9 +74,11 @@ class Article extends Component {
             <div className="card article-created-by">{topic}</div>
         )
     }
-    getCommentsByArticle = (articleId, comments, users, deleteComment) => {
+    getCommentsByArticle = (articleId, articleComments, users, deleteComment) => {
+        // console.log(articleComments)
         return (
-            <div>{comments.comments && comments.comments.map(comment => {
+            <div>{articleComments && articleComments.map(comment => {
+                console.log(comment)
                 if(comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment}/></div>
             })}</div>
         )
