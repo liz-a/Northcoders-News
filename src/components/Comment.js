@@ -4,10 +4,28 @@ import axios from 'axios';
 class Comment extends Component {
     state = {
         commentVotes: this.props.votes,
-        hideComments: true
+        hideComments: true,
+        id: this.props.id,
+        createdBy: this.props.createdBy,
+        body: this.props.body,
+        votes: this.props.votes,
+        users: this.props.users
     }
+
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            commentVotes: newProps.votes,
+            id: newProps.id,
+            createdBy: newProps.createdBy,
+            body: newProps.body,
+            votes: newProps.votes,
+            users: newProps.users
+        })
+      }
+
     render () {
-        const {id, createdBy, body, votes, users, deleteComment} = this.props;
+        const {id, createdBy, body, votes, users} = this.state;
+        const {deleteComment} = this.props;
         return (
             <div className="card comment-box">
                 <div className="row">

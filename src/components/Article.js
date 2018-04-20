@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PT from "prop-types";
 import Comment from './Comment';
 // import {Route} from 'react-router-dom';
+import produce from "immer";
 import axios from 'axios';
 
 class Article extends Component {
@@ -9,7 +10,8 @@ class Article extends Component {
         votes: this.props.article.votes,
         articleComments: this.props.comments.comments,
         hideComments: true,
-        hideAddComment: true
+        hideAddComment: true,
+        newCommentBody: ""
     }
 
       componentWillReceiveProps(newProps) {
@@ -19,9 +21,8 @@ class Article extends Component {
       }
 
     render() {
-        console.log(this.articleComments);
-        console.log(this.props.comments.comments);
         const { article, comments, topics, users, deleteComment } = this.props;
+        // console.log(this.state.articleComments);
         return (
             <div>
                 <div className="row">
@@ -61,36 +62,39 @@ class Article extends Component {
                             <p><i onClick={(e) => { this.showAddComment() }} className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
-                {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
+               
 
 
                 <div className="comment-form-box" hidden={this.state.hideAddComment}>
                     <form>
-                        <div class="form-row align-items-center">
-                            <div class="col-md-3">
-                                <label class="sr-only" for="username">Username</label>
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">@</div>
+                        <div className="form-row align-items-center">
+                            {/* <div className="col-md-3">
+                                <label className="sr-only" htmlFor="username">Username</label>
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <div className="input-group-text">@</div>
                                     </div>
-                                    <input type="text" class="form-control" id="username" placeholder="Username" />
+                                    <input type="text" className="form-control" id="username" placeholder="Username" />
+                                </div>
+                            </div> */}
+                            <div className="col-md-11">
+                                <label className="sr-only" htmlFor="comment">Comment</label>
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <div className="input-group-text">Comment</div>
+                                    </div>
+                                    <input onChange={(e)=>{this.getCommentBody(e.target.value)}} type="text" className="form-control" id="comment" placeholder="..." value={this.state.newCommentBody}/>
                                 </div>
                             </div>
-                            <div class="col-md-8">
-                                <label class="sr-only" for="comment">Comment</label>
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Comment</div>
-                                    </div>
-                                    <input type="text" class="form-control" id="comment" placeholder="..." />
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                            <div className="col-auto">
+                                <button onClick={(e)=> {e.preventDefault();{this.addComment(e,article._id,this.state.newCommentBody)}}} type="submit" className="btn btn-primary mb-2">Post</button>
                             </div>
                         </div>
                     </form>
                 </div>
+
+                 {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
+
             </div>
 
         )
@@ -112,7 +116,7 @@ class Article extends Component {
         )
     }
     getCommentsByArticle = (articleId, articleComments, users, deleteComment) => {
-        // console.log(articleComments)
+        console.log(articleComments);
         return (
             <div>{articleComments && articleComments.map(comment => {
                 if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} /></div>
@@ -161,9 +165,37 @@ class Article extends Component {
                 })
             })
     }
-    // addComment = (articleId, formData) => {
-    //     axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`),
-    // } 
+    getCommentBody = (e) => {
+        console.log(e)
+        this.setState({
+            newCommentBody: e
+        })
+    }
+    // handleAddCommentClick = (e, articleId) => {
+    //     e.preventDefault();
+    //     // console.log(this.state.newCommentBody)
+    //     // console.log(e.target)
+    // }
+    addComment = (e, articleId, comment) => {
+        e.preventDefault();
+        console.log(this.state.newCommentBody)
+        console.log(e.target)
+        axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`, {
+            comment: comment
+        })
+        .then(res => {
+            console.log(res);
+            const baseState = this.state.articleComments;
+            const draftState = [];
+            const nextState = produce(baseState, draftState => {
+                draftState.unshift(res.data.commentData)
+            })
+            this.setState({
+                articleComments: nextState
+            })
+        })
+        .then(() => {console.log(this.state.articleComments)})
+    } 
 }
 
 export default Article;

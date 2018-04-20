@@ -25,7 +25,6 @@ class App extends Component {
   }
   render() {
     const {articles, users, topics, comments} = this.state;
-    console.log(users.users)
     return (
       <div className="App">
       <Navbar topics={topics} users={users}/>
