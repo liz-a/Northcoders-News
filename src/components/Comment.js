@@ -34,14 +34,14 @@ class Comment extends Component {
                     </div>
                     <div className="col-md-2 comment-votes">Votes: {this.state.commentVotes}</div>
                     <div className="col-md-1 comment-votes-change">
-                            <p><i onClick={(e)=> {this.upVoteComment(id)}} className="far fa-arrow-alt-circle-up"></i> <i onClick={(e)=> {this.downVoteComment(id)}} className="far fa-arrow-alt-circle-down"></i> </p></div>
+                            <p><i onClick={(e)=> {this.upVoteComment(id)}} className="far fa-arrow-alt-circle-up up-vote"></i> <i onClick={(e)=> {this.downVoteComment(id)}} className="far fa-arrow-alt-circle-down down-vote"></i> </p></div>
                     </div>
                 <div className="row">
                     <div className="col-md-11">
                         <div className="card comment-body" >{body}</div>
                     </div>
                     <div className="col-md-1">
-                    <div className="comment-delete"> <i onClick={(e)=> {deleteComment(id)}} className="fas fa-comment-slash"></i></div> 
+                    <div className="comment-delete"> <i onClick={(e)=> {deleteComment(id)}} className="fas fa-comment-slash delete-comment"></i></div> 
                     </div>
                     </div>
                 </div>

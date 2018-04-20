@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PT from "prop-types";
 import Comment from './Comment';
-// import {Route} from 'react-router-dom';
 import produce from "immer";
 import axios from 'axios';
 
@@ -40,7 +39,7 @@ class Article extends Component {
                     </div>
                     <div className="col-md-1">
                         <div className="card article-votes-change">
-                            <p><i onClick={(e) => { this.upVoteArticle(article._id, article) }} className="far fa-arrow-alt-circle-up"></i> <i onClick={(e) => { this.downVoteArticle(article._id, article) }} className="far fa-arrow-alt-circle-down"></i> </p></div>
+                            <p><i onClick={(e) => { this.upVoteArticle(article._id, article) }} className="far fa-arrow-alt-circle-up up-vote"></i> <i onClick={(e) => { this.downVoteArticle(article._id, article) }} className="far fa-arrow-alt-circle-down down-vote"></i> </p></div>
                     </div>
                 </div>
                 <div className="row">
@@ -52,13 +51,12 @@ class Article extends Component {
                 <div className="row comments-row">
                     <div className="col-md-11">
                         <div className="card article-comments">
-                            <p onClick={(e) => {  this.showComments() }}>Comments...</p>
-                            {/* <Route path={`/${article._id}/comments`} render={()=><div>COMMENTS</div>}/> */}
+                            <p className="comment-link" onClick={(e) => {  this.showComments() }}>Comments...</p>
                         </div>
                     </div>
                     <div className="col-md-1">
                         <div className="card article-comments-add">
-                            <p><i onClick={(e) => { this.showAddComment() }} className="fas fa-comment"></i> </p></div>
+                            <p><i onClick={(e) => { this.showAddComment() }} className="fas fa-comment add-comment"></i> </p></div>
                     </div>
                 </div>
 
@@ -67,15 +65,6 @@ class Article extends Component {
                 <div className="comment-form-box" hidden={this.state.hideAddComment}>
                     <form>
                         <div className="form-row align-items-center">
-                            {/* <div className="col-md-3">
-                                <label className="sr-only" htmlFor="username">Username</label>
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <div className="input-group-text">@</div>
-                                    </div>
-                                    <input type="text" className="form-control" id="username" placeholder="Username" />
-                                </div>
-                            </div> */}
                             <div className="col-md-11">
                                 <label className="sr-only" htmlFor="comment">Comment</label>
                                 <div className="input-group mb-2">

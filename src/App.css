@@ -13,6 +13,37 @@
   margin: 0 auto !important;
 }
 
+/* VOTES STYING */
+.up-vote {
+  color: rgb(9, 215, 9) !important;
+}
+.up-vote:hover {
+  color: rgb(6, 143, 6) !important;
+}
+.down-vote {
+  color: rgb(237, 14, 14) !important;
+}
+.down-vote:hover {
+  color: rgb(174, 4, 4) !important;
+}
+
+/* COMMENT INTERACTIONS STYLING */
+.delete-comment {
+  color: rgb(237, 14, 14) !important;
+}
+.delete-comment:hover {
+  color: rgb(174, 4, 4) !important;
+}
+.add-comment {
+  color: rgb(9, 215, 9) !important;
+}
+.add-comment:hover {
+  color: rgb(6, 143, 6) !important;
+}
+.comment-link:hover {
+  color: rgb(9, 215, 9) !important;
+}
+
 /* USERS STYLING */
 .card-image-size {
   width: 18em !important;
@@ -33,6 +64,12 @@
 .user-btn-clr {
   border-color: rgb(7, 133, 99) !important;
   background-color: rgb(4, 165, 123) !important;
+  color: white !important;
+  margin: 2px;
+}
+.user-btn-clr:hover {
+  border-color: rgb(7, 133, 99) !important;
+  background-color: rgb(7, 133, 99) !important;
   margin: 2px;
 }
 
