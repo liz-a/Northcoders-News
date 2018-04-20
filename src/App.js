@@ -29,8 +29,8 @@ class App extends Component {
       <Route exact path="/" render={(props) => <Home />}/>
       <Route exact path="/articles" render={(props) => <Articles users={users} topics={topics} articles={articles} comments={comments} />}/>
       <Route exact path="/topics/:topic_name" render={(props) => <Topic users={users} comments={comments} articles={articles} topics={topics} currentTopic={props.match.params.topic_name}/>}/>
-      <Route exact path="/users" render={(props) => <Users users={users}/>}/>
-      <Route exact path="/users/:username" render={(props) => <User username={props.match.params.username} users={users} />}/>
+      <Route exact path="/users" render={(props) => <Users topics={topics} users={users} articles={articles} comments={comments}/>}/>
+      <Route exact path="/users/:username" render={(props) => <User topics={topics} articles={articles} comments={comments} username={props.match.params.username} users={users} />}/>
       </div>
     );
   }

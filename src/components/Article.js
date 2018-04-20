@@ -14,15 +14,14 @@ class Article extends Component {
         newCommentBody: ""
     }
 
-      componentWillReceiveProps(newProps) {
+    componentWillReceiveProps(newProps) {
         this.setState({
             articleComments: newProps.comments
         })
-      }
+    }
 
     render() {
         const { article, topics, users } = this.props;
-        // console.log(this.state.articleComments);
         return (
             <div>
                 <div className="row">
@@ -53,7 +52,7 @@ class Article extends Component {
                 <div className="row comments-row">
                     <div className="col-md-11">
                         <div className="card article-comments">
-                            <p onClick={(e) => { console.log(e); this.showComments() }}>Comments...</p>
+                            <p onClick={(e) => {  this.showComments() }}>Comments...</p>
                             {/* <Route path={`/${article._id}/comments`} render={()=><div>COMMENTS</div>}/> */}
                         </div>
                     </div>
@@ -62,7 +61,7 @@ class Article extends Component {
                             <p><i onClick={(e) => { this.showAddComment() }} className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
-               
+
 
 
                 <div className="comment-form-box" hidden={this.state.hideAddComment}>
@@ -83,17 +82,17 @@ class Article extends Component {
                                     <div className="input-group-prepend">
                                         <div className="input-group-text">Comment</div>
                                     </div>
-                                    <input onChange={(e)=>{this.getCommentBody(e.target.value)}} type="text" className="form-control" id="comment" placeholder="..." value={this.state.newCommentBody}/>
+                                    <input onChange={(e) => { this.getCommentBody(e.target.value) }} type="text" className="form-control" id="comment" placeholder="..." value={this.state.newCommentBody} />
                                 </div>
                             </div>
                             <div className="col-auto">
-                                <button onClick={(e)=> {e.preventDefault();{this.addComment(e,article._id,this.state.newCommentBody)}}} type="submit" className="btn btn-primary mb-2">Post</button>
+                                <button onClick={(e) => { e.preventDefault(); { this.addComment(e, article._id, this.state.newCommentBody) } }} type="submit" className="btn btn-primary mb-2">Post</button>
                             </div>
                         </div>
                     </form>
                 </div>
 
-                 {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
+                {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
 
             </div>
 
@@ -119,7 +118,7 @@ class Article extends Component {
         console.log(articleComments);
         return (
             <div>{articleComments && articleComments.map(comment => {
-                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} comment={comment}/></div>
+                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} comment={comment} /></div>
             })}</div>
         )
     }
@@ -174,20 +173,20 @@ class Article extends Component {
         axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`, {
             comment: comment
         })
-        .then(res => {
-            console.log(res);
-            const baseState = this.state.articleComments;
-            const draftState = [];
-            const nextState = produce(baseState, draftState => {
-                draftState.unshift(res.data.commentData)
+            .then(res => {
+                console.log(res);
+                const baseState = this.state.articleComments;
+                const draftState = [];
+                const nextState = produce(baseState, draftState => {
+                    draftState.unshift(res.data.commentData)
+                })
+                this.setState({
+                    articleComments: nextState,
+                    newCommentBody: ""
+                })
             })
-            this.setState({
-                articleComments: nextState,
-                newCommentBody: ""
-            })
-        })
-        .then(() => {console.log(this.state.articleComments)})
-    } 
+            .then(() => { console.log(this.state.articleComments) })
+    }
 }
 
 export default Article;
