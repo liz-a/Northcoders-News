@@ -12,7 +12,15 @@ class Article extends Component {
         hideAddComment: true
     }
 
+      componentWillReceiveProps(newProps) {
+        this.setState({
+            articleComments: newProps.comments.comments
+        })
+      }
+
     render() {
+        console.log(this.articleComments);
+        console.log(this.props.comments.comments);
         const { article, comments, topics, users, deleteComment } = this.props;
         return (
             <div>
@@ -44,7 +52,7 @@ class Article extends Component {
                 <div className="row comments-row">
                     <div className="col-md-11">
                         <div className="card article-comments">
-                            <p onClick={(e) => { this.showComments() }}>Comments...</p>
+                            <p onClick={(e) => { console.log(e); this.showComments() }}>Comments...</p>
                             {/* <Route path={`/${article._id}/comments`} render={()=><div>COMMENTS</div>}/> */}
                         </div>
                     </div>
@@ -53,7 +61,8 @@ class Article extends Component {
                             <p><i onClick={(e) => { this.showAddComment() }} className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
-                <div hidden={this.state.hideComments}>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>
+                {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
+
 
                 <div className="comment-form-box" hidden={this.state.hideAddComment}>
                     <form>
