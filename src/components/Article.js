@@ -8,7 +8,8 @@ class Article extends Component {
     state = {
         votes: this.props.article.votes,
         articleComments: this.props.comments.comments,
-        hideComments: true
+        hideComments: true,
+        hideAddComment: true
     }
 
     render() {
@@ -49,10 +50,38 @@ class Article extends Component {
                     </div>
                     <div className="col-md-1">
                         <div className="card article-comments-add">
-                            <p><i className="fas fa-comment"></i> </p></div>
+                            <p><i onClick={(e) => { this.showAddComment() }} className="fas fa-comment"></i> </p></div>
                     </div>
                 </div>
                 <div hidden={this.state.hideComments}>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>
+
+                <div className="comment-form-box" hidden={this.state.hideAddComment}>
+                    <form>
+                        <div class="form-row align-items-center">
+                            <div class="col-md-3">
+                                <label class="sr-only" for="username">Username</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="username" placeholder="Username" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="sr-only" for="comment">Comment</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Comment</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="comment" placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         )
@@ -81,11 +110,18 @@ class Article extends Component {
             })}</div>
         )
     }
-    showComments = (articleId, comments) => {
+    showComments = () => {
         let bool;
         this.state.hideComments ? bool = false : bool = true;
         this.setState({
             hideComments: bool
+        })
+    }
+    showAddComment = () => {
+        let bool;
+        this.state.hideAddComment ? bool = false : bool = true;
+        this.setState({
+            hideAddComment: bool
         })
     }
     static propTypes = {
@@ -109,7 +145,6 @@ class Article extends Component {
     }
     deleteComment = (commentId) => {
         axios.delete(`https://northcoder-news.herokuapp.com/api/comments/${commentId}`)
-            // .then(res => res.json())
             .then((res) => {
                 console.log(res)
                 this.setState({
@@ -117,6 +152,9 @@ class Article extends Component {
                 })
             })
     }
+    // addComment = (articleId, formData) => {
+    //     axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`),
+    // } 
 }
 
 export default Article;

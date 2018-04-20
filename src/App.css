@@ -21,6 +21,11 @@
 }
 
 /* COMMENTS STYING */
+.comment-form-box {
+  position: relative;
+  margin: 0 auto;
+  padding: 1px 10px 1px 10px;
+}
 .comment-box {
   width: 99%;
   margin: 0 auto;
