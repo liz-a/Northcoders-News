@@ -12,6 +12,30 @@
   position: relative !important;
   margin: 0 auto !important;
 }
+
+/* USERS STYLING */
+.card-image-size {
+  width: 18em !important;
+  position: relative;
+  margin: 0 auto;
+}
+.user-card {
+  padding: 10px;
+  text-align: center;
+  width: 30em !important;
+  position: relative;
+  margin: 4px auto;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-color: black !important;
+}
+
+.user-btn-clr {
+  border-color: rgb(7, 133, 99) !important;
+  background-color: rgb(4, 165, 123) !important;
+  margin: 2px;
+}
+
 /* NAVBAR STYLING */
 .centre {
   text-align: center !important;
