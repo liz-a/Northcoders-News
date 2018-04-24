@@ -9,12 +9,6 @@ class Articles extends Component {
         return (
             <div className="outer">
                 <div className="container-fluid">
-                {/* <div className="row align-centre">
-                <div className="col-md-4">
-                <div className="card ">Most votes
-                </div>
-                </div>
-                </div> */}
                     {articles && articles.map(article => {
                         return (
                             <div className="between-articles" key={article._id}>

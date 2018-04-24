@@ -61,8 +61,8 @@ class Article extends Component {
                 </div>
 
 
-
-                <div className="comment-form-box" hidden={this.state.hideAddComment}>
+                {this.state.hideAddComment &&
+                <div className="comment-form-box">
                     <form>
                         <div className="form-row align-items-center">
                             <div className="col-md-11">
@@ -79,7 +79,7 @@ class Article extends Component {
                             </div>
                         </div>
                     </form>
-                </div>
+                </div>}
 
                 {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
 
