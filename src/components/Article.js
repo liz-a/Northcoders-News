@@ -8,8 +8,8 @@ class Article extends Component {
     state = {
         votes: this.props.article.votes,
         articleComments: this.props.comments,
-        hideComments: true,
-        hideAddComment: true,
+        showComments: false,
+        showAddComment: false,
         newCommentBody: ""
     }
 
@@ -61,7 +61,7 @@ class Article extends Component {
                 </div>
 
 
-                {this.state.hideAddComment &&
+                {this.state.showAddComment &&
                 <div className="comment-form-box">
                     <form>
                         <div className="form-row align-items-center">
@@ -81,7 +81,7 @@ class Article extends Component {
                     </form>
                 </div>}
 
-                {!this.state.hideComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
+                {this.state.showComments && <div>{this.state.articleComments && this.getCommentsByArticle(article._id, this.state.articleComments, users, this.deleteComment)}</div>}
 
             </div>
 
