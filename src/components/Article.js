@@ -104,7 +104,6 @@ class Article extends Component {
         )
     }
     getCommentsByArticle = (articleId, articleComments, users, deleteComment) => {
-        console.log(articleComments);
         return (
             <div>{articleComments && articleComments.map(comment => {
                 if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} comment={comment} /></div>
@@ -164,7 +163,6 @@ class Article extends Component {
             comment: comment
         })
             .then(res => {
-                console.log(res);
                 const baseState = this.state.articleComments;
                 const draftState = [];
                 const nextState = produce(baseState, draftState => {
@@ -175,7 +173,6 @@ class Article extends Component {
                     newCommentBody: ""
                 })
             })
-            .then(() => { console.log(this.state.articleComments) })
     }
 }
 

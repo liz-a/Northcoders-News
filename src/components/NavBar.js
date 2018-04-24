@@ -5,24 +5,24 @@ class Navbar extends Component {
   state = {
     hideTopicsMenu: true,
     hideOptionsWrap: true,
-    hideUsersMenu: false
+    hideUsersMenu: true
   }
   render() {
     const { users, topics } = this.props;
     return (
       <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-          <Link to="/" className="navbar-brand text-light">{"<Northcoders News/>"}</Link>
+          <Link to="/" onClick={this.hideOptionalMenus} className="navbar-brand text-light">{"<Northcoders News/>"}</Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <Link to="/articles" className="nav-link">Articles</Link>
+                <Link to="/users" onClick={this.handleMenuClickUsers} className="nav-link">Users</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/articles" onClick={this.hideOptionalMenus} className="nav-link">Articles</Link>
               </li>
               <li className="nav-item">
                 <a onClick={this.handleMenuClickTopics} className="nav-link">Topics</a>
-              </li>
-              <li className="nav-item">
-                <Link to="/users" onClick={this.handleMenuClickUsers} className="nav-link">Users</Link>
               </li>
               <li className="nav-item" hidden={this.state.hideOptionsWrap}>
                 <a className="nav-link">{"<"}</a>
@@ -56,14 +56,17 @@ class Navbar extends Component {
     this.state.hideTopicsMenu ? bool = false : bool = true;
     this.setState({
       hideOptionsWrap: bool,
-      hideTopicsMenu: bool
+      hideTopicsMenu: bool,
+      hideUsersMenu: true
     })
   }
   handleMenuClickUsers = (e) => {
     let bool;
     this.state.hideUsersMenu ? bool = false : bool = true;
     this.setState({
-      hideUsersMenu: bool
+      hideUsersMenu: bool,
+      hideOptionsWrap: true,
+      hideTopicsMenu: true
     })
   }
   getExtraMenuItemsTopics = (topics) => {
@@ -84,6 +87,13 @@ class Navbar extends Component {
         <Link to={`/users/${username.toLowerCase()}`} className="nav-link">{username}</Link>
       </li>
       )
+    })
+  }
+  hideOptionalMenus = () => {
+    this.setState({
+      hideOptionsWrap: true,
+      hideTopicsMenu: true,
+      hideUsersMenu: true
     })
   }
 }
