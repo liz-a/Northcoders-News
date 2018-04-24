@@ -6,7 +6,6 @@ class Navbar extends Component {
     hideTopicsMenu: true,
     hideOptionsWrap: true,
     hideUsersMenu: false
-
   }
   render() {
     const { users, topics } = this.props;

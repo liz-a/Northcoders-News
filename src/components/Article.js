@@ -145,12 +145,13 @@ class Article extends Component {
             })
     }
     deleteComment = (commentId) => {
+        let newComments = this.state.articleComments.filter(comment => {
+            return comment._id !== commentId
+        })
+        this.setState({
+            articleComments: newComments
+        })
         axios.delete(`https://northcoder-news.herokuapp.com/api/comments/${commentId}`)
-            .then((res) => {
-                this.setState({
-                    articleComments: res.data.comments
-                })
-            })
     }
     getCommentBody = (e) => {
         this.setState({

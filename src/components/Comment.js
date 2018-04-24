@@ -56,20 +56,16 @@ class Comment extends Component {
         )
     }
     upVoteComment = (commentId) => {
-        axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=up`)
-        .then((res)=> {
-            this.setState({
-                commentVotes: res.data.comment[0].votes
-            })
+        this.setState({
+            commentVotes: this.state.commentVotes + 1
         })
+        axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=up`)
     }
     downVoteComment = (commentId) => {
-        axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=down`)
-        .then((res)=> {
-            this.setState({
-                commentVotes: res.data.comment[0].votes
-            })
+        this.setState({
+            commentVotes: this.state.commentVotes - 1
         })
+        axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=down`)
     }
 }
 
