@@ -113,16 +113,16 @@ class Article extends Component {
     }
     showComments = () => {
         let bool;
-        this.state.hideComments ? bool = false : bool = true;
+        this.state.showComments ? bool = false : bool = true;
         this.setState({
-            hideComments: bool
+            showComments: bool
         })
     }
     showAddComment = () => {
         let bool;
-        this.state.hideAddComment ? bool = false : bool = true;
+        this.state.showAddComment ? bool = false : bool = true;
         this.setState({
-            hideAddComment: bool
+            showAddComment: bool
         })
     }
     static propTypes = {
