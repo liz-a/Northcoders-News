@@ -60,7 +60,7 @@ class User extends Component {
         users: PT.array.isRequired,
         username: PT.string.isRequired,
         topics: PT.array.isRequired,
-        article: PT.object.isRequired,
+        articles: PT.array.isRequired,
         comments: PT.array.isRequired
     }
 }

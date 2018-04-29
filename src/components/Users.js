@@ -23,7 +23,7 @@ class Users extends Component {
     static propTypes = {
         users: PT.array.isRequired,
         topics: PT.array.isRequired,
-        article: PT.object.isRequired,
+        articles: PT.array.isRequired,
         comments: PT.array.isRequired
     }
 }

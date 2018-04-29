@@ -10,13 +10,13 @@ class Home extends Component {
                 <div className="container-fluid">
                     <div className="between-articles">
                         <div className="card articles-box-width">
-                            <div className="align-centre">Most talked about...</div>
+                            <div className="align-centre"><h4>Most talked about...</h4></div>
                             {users.length && articles.length && comments.length && topics.length && this.getTopMostCommentedArticle(articles, comments, topics, users)}
                         </div>
                     </div>
                     <div className="between-articles">
                         <div className="card articles-box-width">
-                            <div className="align-centre">Highest rated...</div>
+                            <div className="align-centre"><h4>Highest rated...</h4></div>
 
                             {users.length && articles.length && comments.length && topics.length && this.getTopVotedArticle(articles, comments, topics, users)}
                         </div>

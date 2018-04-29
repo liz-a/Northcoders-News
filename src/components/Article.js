@@ -25,7 +25,7 @@ class Article extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-5">
-                        <div className="card article-name" >{article.title}</div>
+                        <div className="card article-name" ><h4>{article.title}</h4></div>
                     </div>
                     <div className="col-md-2 article-user">
                         {this.findCreatedBy(article.created_by, article, users)}
@@ -35,7 +35,7 @@ class Article extends Component {
                     </div>
                     <div className="col-md-2">
                         <div className="card article-votes">
-                            <p>Votes: {this.state.votes}</p></div>
+                            <h5>Votes: {this.state.votes}</h5></div>
                     </div>
                     <div className="col-md-1">
                         <div className="card article-votes-change">
@@ -51,7 +51,7 @@ class Article extends Component {
                 <div className="row comments-row">
                     <div className="col-md-11">
                         <div className="card article-comments">
-                            <p className="comment-link" onClick={(e) => {  this.showComments() }}>Comments...</p>
+                            <b><p className="comment-link" onClick={(e) => {  this.showComments() }}>Comments...</p></b>
                         </div>
                     </div>
                     <div className="col-md-1">
@@ -92,7 +92,7 @@ class Article extends Component {
             return user._id === userId
         })[0].name
         return (
-            <div className="card article-created-by">{user}</div>
+            <div className="card article-created-by"><h5>{user}</h5></div>
         )
     }
     findBelongsTo = (topicId, article, topics) => {
@@ -100,7 +100,7 @@ class Article extends Component {
             return topic._id === topicId
         })[0].title
         return (
-            <div className="card article-created-by">{topic}</div>
+            <div className="card article-created-by"><h5>{topic}</h5></div>
         )
     }
     getCommentsByArticle = (articleId, articleComments, users, deleteComment) => {
