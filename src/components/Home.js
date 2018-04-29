@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Article from './Article';
+import PT from "prop-types";
 
 class Home extends Component {
     render() {
@@ -10,14 +11,14 @@ class Home extends Component {
                     <div className="between-articles">
                         <div className="card articles-box-width">
                             <div className="align-centre">Most talked about...</div>
-                            {articles && this.getTopMostCommentedArticle(articles, comments, topics, users)}
+                            {users.length && articles.length && comments.length && topics.length && this.getTopMostCommentedArticle(articles, comments, topics, users)}
                         </div>
                     </div>
                     <div className="between-articles">
                         <div className="card articles-box-width">
                             <div className="align-centre">Highest rated...</div>
 
-                            {articles && this.getTopVotedArticle(articles, comments, topics, users)}
+                            {users.length && articles.length && comments.length && topics.length && this.getTopVotedArticle(articles, comments, topics, users)}
                         </div>
                     </div>
 
@@ -41,7 +42,6 @@ class Home extends Component {
 
     getTopMostCommentedArticle = (articles, comments, topics, users) => {
         const topArticle = articles.sort((a, b) => b.comment_count - a.comment_count)[0];
-        // {topArticle && console.log(topArticle.comment_count)}
         return (
             <div className="card ">
             {topArticle &&
@@ -52,6 +52,12 @@ class Home extends Component {
                     users={users} />}
             </div>
         )
+    }
+    static propTypes = {
+        users: PT.array.isRequired,
+        topics: PT.array.isRequired,
+        articles: PT.array.isRequired,
+        comments: PT.array.isRequired
     }
 }
 

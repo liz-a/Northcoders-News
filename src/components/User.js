@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Article from './Article';
+import PT from "prop-types";
 
 class User extends Component {
 
@@ -54,6 +55,13 @@ class User extends Component {
                 }
             </div>
         )
+    }
+    static propTypes = {
+        users: PT.array.isRequired,
+        username: PT.string.isRequired,
+        topics: PT.array.isRequired,
+        article: PT.object.isRequired,
+        comments: PT.array.isRequired
     }
 }
 

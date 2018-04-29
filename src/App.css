@@ -1,11 +1,17 @@
-.red {
+* {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+/* .red {
   border-color: red !important;
   background-color: red !important;
   z-index: 1;
-  /* border-style: solid;
-  border-width: 3px; */
-}
+  border-style: solid;
+  border-width: 3px;
+} */
+
 .outer {
+  padding-top: 1%;
   width: 100%;
 }
 .align-centre {
@@ -13,35 +19,49 @@
   margin: 0 auto !important;
 }
 
+/* NAVBAR STYLING */
+.centre {
+  text-align: center !important;
+  display: inline;
+  position: relative;
+  margin: 0 auto;
+}
+
+.nav-text {
+  color: #aeafb0 !important;
+}
+.nav-text:hover {
+  color: white !important;
+}
+
+.nav-nc-text {
+  color: white !important;
+}
+.nav-nc-text:hover {
+  color: #C3002F !important;
+}
+
+.kill-hover {
+  color: #aeafb0 !important;
+}
+.kill-hover:hover {
+  color: #aeafb0 !important;
+}
+
 /* VOTES STYING */
 .up-vote {
+  font-size: 1.2em;
   color: rgb(9, 215, 9) !important;
 }
 .up-vote:hover {
   color: rgb(6, 143, 6) !important;
 }
 .down-vote {
+  font-size: 1.2em;
   color: rgb(237, 14, 14) !important;
 }
 .down-vote:hover {
   color: rgb(174, 4, 4) !important;
-}
-
-/* COMMENT INTERACTIONS STYLING */
-.delete-comment {
-  color: rgb(237, 14, 14) !important;
-}
-.delete-comment:hover {
-  color: rgb(174, 4, 4) !important;
-}
-.add-comment {
-  color: rgb(9, 215, 9) !important;
-}
-.add-comment:hover {
-  color: rgb(6, 143, 6) !important;
-}
-.comment-link:hover {
-  color: rgb(9, 215, 9) !important;
 }
 
 /* USERS STYLING */
@@ -72,13 +92,34 @@
   background-color: rgb(7, 133, 99) !important;
   margin: 2px;
 }
+.users {
+  text-align: center;
+}
 
-/* NAVBAR STYLING */
-.centre {
-  text-align: center !important;
-  display: inline;
-  position: relative;
-  margin: 0 auto;
+/* COMMENT INTERACTIONS STYLING */
+.delete-comment {
+  color: rgb(237, 14, 14) !important;
+}
+.delete-comment:hover {
+  color: rgb(174, 4, 4) !important;
+}
+.add-comment {
+  font-size: 1.2em;
+  color: rgb(9, 215, 9) !important;
+}
+.add-comment:hover {
+  color: rgb(6, 143, 6) !important;
+}
+.comment-link:hover {
+  color: rgb(9, 215, 9) !important;
+}
+.post-comment-btn {
+  color: black !important;
+  background-color: rgb(9, 215, 9) !important;
+}
+.post-comment-btn:hover {
+  color: white !important;
+  background-color: rgb(6, 143, 6) !important;
 }
 
 /* COMMENTS STYING */
@@ -86,6 +127,7 @@
   position: relative;
   margin: 0 auto;
   padding: 1px 10px 1px 10px;
+  width: 100%;
 }
 .comment-box {
   width: 99%;
@@ -97,7 +139,7 @@
   padding: 1px 10px 1px 10px;
 }
 .between-comments {
-  margin-bottom: 4px !important;
+  margin-bottom: .4em !important;
 }
 .comment-user-name {
   width: 100%;
@@ -125,10 +167,6 @@
   border: none !important;
 }
 
-/* USERS STYLING */
-.users {
-  text-align: center;
-}
 /* ARTICLES STYLING */
 .articles-box-width {
   width: 90%;

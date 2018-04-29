@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import PT from "prop-types";
 
 class Navbar extends Component {
   state = {
@@ -12,24 +13,24 @@ class Navbar extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-          <Link to="/" onClick={this.hideOptionalMenus} className="navbar-brand text-light">{"<Northcoders News/>"}</Link>
+          <Link to="/" onClick={this.hideOptionalMenus} className="navbar-brand nav-nc-text">{"< Northcoders News />"}</Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <Link to="/users" onClick={this.handleMenuClickUsers} className="nav-link">Users</Link>
+                <Link to="/users" onClick={this.handleMenuClickUsers} className="nav-link nav-text">Users</Link>
               </li>
               <li className="nav-item">
-                <Link to="/articles" onClick={this.hideOptionalMenus} className="nav-link">Articles</Link>
+                <Link to="/articles" onClick={this.hideOptionalMenus} className="nav-link nav-text">Articles</Link>
               </li>
               <li className="nav-item">
-                <a onClick={this.handleMenuClickTopics} className="nav-link">Topics</a>
+                <a onClick={this.handleMenuClickTopics} className="nav-link nav-text">Topics</a>
               </li>
               <li className="nav-item" hidden={this.state.hideOptionsWrap}>
-                <a className="nav-link">{"<"}</a>
+                <a className="nav-link kill-hover">{"<"}</a>
               </li>
                 {topics && this.getExtraMenuItemsTopics(topics)}
               <li className="nav-item">
-                <a className="nav-link" hidden={this.state.hideOptionsWrap}>{"/>"}</a>
+                <a className="nav-link kill-hover" hidden={this.state.hideOptionsWrap}>{"/>"}</a>
               </li>
             </ul>
           </div>
@@ -74,7 +75,7 @@ class Navbar extends Component {
       const title = topic.title;
       return (
       <li key={topic._id} className="nav-item">
-        <Link to={`/topics/${title.toLowerCase()}`} hidden={this.state.hideTopicsMenu} className="nav-link">{title}</Link>
+        <Link to={`/topics/${title.toLowerCase()}`} hidden={this.state.hideTopicsMenu} className="nav-link nav-text">{title}</Link>
       </li>
       )
     })
@@ -84,7 +85,7 @@ class Navbar extends Component {
       const username = user.username
       return (
       <li key={user._id} className="nav-item">
-        <Link to={`/users/${username.toLowerCase()}`} className="nav-link">{username}</Link>
+        <Link to={`/users/${username.toLowerCase()}`} className="nav-link nav-text">{username}</Link>
       </li>
       )
     })
@@ -96,6 +97,10 @@ class Navbar extends Component {
       hideUsersMenu: true
     })
   }
+  static propTypes = {
+    users: PT.array.isRequired,
+    topics: PT.array.isRequired
+}
 }
 
 export default Navbar;

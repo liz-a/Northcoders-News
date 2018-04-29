@@ -75,7 +75,7 @@ class Article extends Component {
                                 </div>
                             </div>
                             <div className="col-auto">
-                                <button onClick={(e) => { e.preventDefault(); { this.addComment(e, article._id, this.state.newCommentBody) } }} type="submit" className="btn btn-primary mb-2">Post</button>
+                                <button onClick={(e) => { e.preventDefault(); { this.addComment(e, article._id, this.state.newCommentBody) } }} type="submit" className="btn btn-primary mb-2 post-comment-btn">Post</button>
                             </div>
                         </div>
                     </form>
@@ -106,7 +106,9 @@ class Article extends Component {
     getCommentsByArticle = (articleId, articleComments, users, deleteComment) => {
         return (
             <div>{articleComments && articleComments.map(comment => {
-                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment id={comment._id} users={users} createdBy={comment.created_by} body={comment.body} votes={comment.votes} deleteComment={deleteComment} comment={comment} /></div>
+                if (comment.belongs_to === articleId) return <div key={comment._id} className="between-comments"><Comment comment={comment} 
+                users={users} 
+                deleteComment={deleteComment} /></div>
             })}</div>
         )
     }
@@ -124,24 +126,21 @@ class Article extends Component {
             showAddComment: bool
         })
     }
-    static propTypes = {
-        article: PT.object.isRequired
-    }
     upVoteArticle = (articleId, article) => {
         axios.put(`https://northcoder-news.herokuapp.com/api/articles/${articleId}?vote=up`)
-            .then((res) => {
-                this.setState({
-                    votes: res.data.article.votes
-                })
+        .then((res) => {
+            this.setState({
+                votes: res.data.article.votes
             })
+        })
     }
     downVoteArticle = (articleId, article) => {
         axios.put(`https://northcoder-news.herokuapp.com/api/articles/${articleId}?vote=down`)
-            .then((res) => {
-                this.setState({
-                    votes: res.data.article.votes
-                })
+        .then((res) => {
+            this.setState({
+                votes: res.data.article.votes
             })
+        })
     }
     deleteComment = (commentId) => {
         let newComments = this.state.articleComments.filter(comment => {
@@ -162,17 +161,22 @@ class Article extends Component {
         axios.post(`https://northcoder-news.herokuapp.com/api/articles/${articleId}/comments`, {
             comment: comment
         })
-            .then(res => {
-                const baseState = this.state.articleComments;
-                const draftState = [];
-                const nextState = produce(baseState, draftState => {
-                    draftState.unshift(res.data.commentData)
-                })
-                this.setState({
-                    articleComments: nextState,
-                    newCommentBody: ""
-                })
+        .then(res => {
+            const baseState = this.state.articleComments;
+            const nextState = produce(baseState, draftState => {
+                draftState.unshift(res.data.commentData)
             })
+            this.setState({
+                articleComments: nextState,
+                newCommentBody: ""
+            })
+        })
+    }
+    static propTypes = {
+        users: PT.array.isRequired,
+        topics: PT.array.isRequired,
+        article: PT.object.isRequired,
+        comments: PT.array.isRequired
     }
 }
 

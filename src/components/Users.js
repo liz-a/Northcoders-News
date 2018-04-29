@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import User from './User';
+import PT from "prop-types";
 
 class Users extends Component {
     render(){
@@ -18,6 +19,12 @@ class Users extends Component {
                 <div key={`allUserNav${user._id}`}><User topics={topics} articles={articles} comments={comments} username={user.username} users={users}/></div>
             )
         })
+    }
+    static propTypes = {
+        users: PT.array.isRequired,
+        topics: PT.array.isRequired,
+        article: PT.object.isRequired,
+        comments: PT.array.isRequired
     }
 }
 

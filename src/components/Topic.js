@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Article from './Article';
+import PT from "prop-types";
 
 class Topic extends Component {
     render() {
@@ -13,11 +14,12 @@ class Topic extends Component {
         )
     }
     getArticlesByTopic = (currentTopic, articles, topics, users, comments, deleteComment) => {
+
         let topicId = topics.map(topic => {
             if(topic.title.toLowerCase() === currentTopic) return topic._id;
         }).filter(id => id !== undefined)[0];
         return (
-            <div>
+            <div className="outer">
                 {articles.map(article => {
                     if(article.belongs_to === topicId){
                         return (
@@ -35,6 +37,13 @@ class Topic extends Component {
                 })}
                 </div>
         )
+    }
+    static propTypes = {
+        users: PT.array.isRequired,
+        topics: PT.array.isRequired,
+        articles: PT.array.isRequired,
+        comments: PT.array.isRequired,
+        currentTopic: PT.string.isRequired
     }
 }
 

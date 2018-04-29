@@ -28,9 +28,12 @@ class Articles extends Component {
             </div>
                 )
     }
-    // static propTypes = {
-    //     article: PT.array.isRequired
-    // }
+    static propTypes = {
+        users: PT.array.isRequired,
+        topics: PT.array.isRequired,
+        articles: PT.array.isRequired,
+        comments: PT.array.isRequired
+    }
 }
         
 export default Articles;

@@ -33,6 +33,7 @@ class App extends Component {
       <Route exact path="/users/:username" render={(props) => <User topics={topics} articles={articles} comments={comments} username={props.match.params.username} users={users} />}/>
       </div>
     );
+
   }
   getArticles = () => {
     fetch("https://northcoder-news.herokuapp.com/api/articles")

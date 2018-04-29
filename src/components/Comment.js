@@ -1,30 +1,31 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import PT from "prop-types";
 
 class Comment extends Component {
     state = {
-        commentVotes: this.props.votes,
+        commentVotes: this.props.comment.votes,
         hideComments: true,
-        id: this.props.id,
-        createdBy: this.props.createdBy,
-        body: this.props.body,
-        votes: this.props.votes,
+        id: this.props.comment._id,
+        createdBy: this.props.comment.created_by,
+        body: this.props.comment.body,
+        votes: this.props.comment.votes,
         users: this.props.users
     }
 
     componentWillReceiveProps(newProps) {
         this.setState({
             commentVotes: newProps.votes,
-            id: newProps.id,
-            createdBy: newProps.createdBy,
-            body: newProps.body,
-            votes: newProps.votes,
+            id: newProps.comment._id,
+            createdBy: newProps.comment.created_by,
+            body: newProps.comment.body,
+            votes: newProps.comment.votes,
             users: newProps.users
         })
       }
 
     render () {
-        const {id, createdBy, body, users} = this.state;
+        const {id, createdBy, body} = this.state;
         const {deleteComment} = this.props;
         return (
             <div className="card comment-box">
@@ -66,6 +67,11 @@ class Comment extends Component {
             commentVotes: this.state.commentVotes - 1
         })
         axios.put(`https://northcoder-news.herokuapp.com/api/comments/${commentId}?vote=down`)
+    }
+    static propTypes = {
+        users: PT.array.isRequired,
+        comment: PT.object.isRequired,
+        deleteComment: PT.func.isRequired
     }
 }
 
